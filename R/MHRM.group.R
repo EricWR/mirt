@@ -340,8 +340,8 @@ MHRM.group <- function(pars, constrain, Ls, Data, PrepList, list, random = list(
         } else {
             fail_invert_info <- FALSE
             SEtmp <- diag(acov)
-            if(any(SEtmp < 0))
-                SEtmp[SEtmp < 0 ] <- NaN
+            if(any(SEtmp < 0, na.rm=T))
+                SEtmp[which(SEtmp < 0)] <- NaN
             SEtmp <- sqrt(SEtmp)
             SE <- rep(NA, length(longpars))
             SE[estindex_unique] <- SEtmp
